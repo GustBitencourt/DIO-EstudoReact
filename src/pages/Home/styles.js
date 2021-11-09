@@ -30,3 +30,12 @@ export const Map = styled.div`
   background-color: blue;
   width: 31.25rem;
 `;
+
+export const CarouselTitle = styled.h1`
+  font-family: ${(props) => props.theme.fonts.regular};
+  color: ${(props) => props.theme.colors.text};
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.8125rem;
+  margin: 1rem 0;
+`;
