@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Slider from 'react-slick';
 
 /* Responsável por englobar menu lateral e o mapa */
 export const Wrapper = styled.div`
@@ -29,6 +30,12 @@ export const Logo = styled.img`
 export const Map = styled.div`
   background-color: blue;
   width: 31.25rem;
+`;
+
+export const Carousel = styled(Slider)`
+  .slick-slide {
+    margin-right: 1rem;
+  }
 `;
 
 export const CarouselTitle = styled.h1`
