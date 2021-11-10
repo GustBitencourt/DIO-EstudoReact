@@ -10,6 +10,7 @@ import { Container, Carousel, Search, Logo, Wrapper, Map, CarouselTitle } from '
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
+  const [modalOpened, setModalOpened]
 
   /* Configuração do carrossel */
   const settings = {
@@ -40,11 +41,12 @@ const Home = () => {
             <Card photo={restaurant} title="Nome Restaurante" />
             <Card photo={restaurant} title="Nome Restaurante" />
             <Card photo={restaurant} title="Nome Restaurante" />
-          </Carousel>
+          </Carousel>          
         </Search>
         <RestaurantCard />
       </Container>
       <Map />
+      <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}/>
     </Wrapper>
   );
 };

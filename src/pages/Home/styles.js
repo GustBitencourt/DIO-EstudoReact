@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 /* Responsável por englobar menu lateral e o mapa */
 export const Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
 `;
 /* Menu lateral */
 export const Container = styled.aside`
@@ -24,7 +23,7 @@ export const Search = styled.section`
 `;
 
 export const Logo = styled.img`
-  margin-bottom: 1rem;
+  margin: 1rem;
 `;
 
 export const Map = styled.div`
