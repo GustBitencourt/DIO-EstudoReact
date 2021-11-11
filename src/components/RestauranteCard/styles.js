@@ -16,7 +16,7 @@ export const Restaurant = styled.div`
 
 export const RestaurantInfo = styled.div`
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 `;
 
 export const Title = styled.span`
@@ -25,19 +25,20 @@ export const Title = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
   font-size: 1.8125rem;
-  margin-bottom: 0.625rem
+  margin-bottom: 0.625rem;
 `;
 
 export const Address = styled.span`
-font-family: ${(props) => props.theme.regular};
+  font-family: ${(props) => props.theme.regular};
   color: ${(props) => props.theme.colors.text};
   font-size: 1rem;
   font-weight: bold;
   font-size: 1.8125rem;
-  margin-bottom: 0.625rem
+  margin-bottom: 0.625rem;
 `;
 
 export const RestaurantPhoto = styled.img`
+  display: ${(props) => (props.imageLoaded ? 'block' : 'none')}
   width: 6.25rem;
   height: 6.25rem;
   object-fit: cover;

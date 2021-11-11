@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 /* Responsável por englobar menu lateral e o mapa */
 export const Wrapper = styled.div`
   display: flex;
+  flex-direction: row;
 `;
 /* Menu lateral */
 export const Container = styled.aside`
@@ -33,7 +34,7 @@ export const Map = styled.div`
 
 export const Carousel = styled(Slider)`
   .slick-slide {
-    margin-right: 1rem;
+    margin-right: 1.875rem;
   }
 `;
 
@@ -44,4 +45,23 @@ export const CarouselTitle = styled.h1`
   font-weight: bold;
   line-height: 1.8125rem;
   margin: 1rem 0;
+`;
+
+export const ModalTitle = styled.p`
+  margin-botton: 0.625rem;
+  letter-spacing: 0.0069rem;
+  font-family: ${(props) => props.theme.fonts.regular};
+  color: ${(props) => props.theme.colors.text};
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-transform: none;
+`;
+
+export const ModalContent = styled.p`
+  margin-botton: 0.625rem;
+  font-family: ${(props) => props.theme.fonts.regular};
+  color: ${(props) => props.theme.colors.text};
+  font-weight: normal;
+  line-height: 1rem.
+  font-size: 1.5rem;
 `;

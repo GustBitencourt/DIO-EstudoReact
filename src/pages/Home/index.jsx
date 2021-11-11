@@ -1,26 +1,52 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
-import TextField, { Input } from '@material/react-text-field/dist/index';
+import { useSelector } from 'react-redux';
+import TextField, { Input } from '@material/react-text-field';
 import MaterialIcon from '@material/react-material-icon';
 
 import logo from '../../assets/logo.svg';
-import restaurant from '../../assets/restaurante-fake.png';
-import { Card, RestaurantCard, Modal, Map } from '../../components';
+import restaurante from '../../assets/restaurante-fake.png';
+import { Card, RestaurantCard, Modal, Map, Loader, Skeleton } from '../../components';
 
-import { Container, Carousel, Search, Logo, Wrapper, CarouselTitle } from './styles';
+import {
+  Container,
+  Carousel,
+  Search,
+  Logo,
+  Wrapper,
+  CarouselTitle,
+  ModalTitle,
+  ModalContent,
+} from './styles';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
-  const [modalOpened, setModalOpened] = useState(true);
+  const [query, setQuery] = useState(null);
+  const [placeId, setPlaceId] = useState(null);
+  const [modalOpened, setModalOpened] = useState(false);
+  const { restaurants, restaurantSelected } = useSelector((state) => state.restaurants);
 
   /* Configuração do carrossel */
   const settings = {
     dots: false,
     infinite: true,
+    autoplay: true,
     speed: 300,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     adaptiveHeight: true,
   };
+
+  function handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      setQuery(inputValue);
+    }
+  }
+
+  function handleOpenModal() {
+    setPlaceId(placeId);
+    setModalOpened(true);
+  }
 
   return (
     <Wrapper>
@@ -31,22 +57,59 @@ const Home = () => {
             label="Pesquisar Restaurantes"
             outlined
             trailingIcon={<MaterialIcon role="button" icon="search" />}>
-            <Input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+            <Input
+              type="text"
+              value={inputValue}
+              onKeyPress={handleKeyPress}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
           </TextField>
-          <CarouselTitle>Na sua Área</CarouselTitle>
-          <Carousel {...settings}>
-            <Card photo={restaurant} title="Nome Restaurante" />
-            <Card photo={restaurant} title="Nome Restaurante" />
-            <Card photo={restaurant} title="Nome Restaurante" />
-            <Card photo={restaurant} title="Nome Restaurante" />
-            <Card photo={restaurant} title="Nome Restaurante" />
-            <Card photo={restaurant} title="Nome Restaurante" />
-          </Carousel>
+          {restaurants.length > 0 ? (
+            <>
+              <CarouselTitle>Na sua Área</CarouselTitle>
+              <Carousel {...settings}>
+                {restaurants.map((restaurant) => (
+                  <Card
+                    key={restaurant.place_id}
+                    photo={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante}
+                    title={restaurant.name}
+                  />
+                ))}
+              </Carousel>
+            </>
+          ) : (
+            <Loader />
+          )}
         </Search>
-        <RestaurantCard />
+        {restaurants.map((restaurant) => (
+          <RestaurantCard
+            onClick={() => handleOpenModal(restaurant.place_id)}
+            restaurant={restaurant}
+          />
+        ))}
       </Container>
-      <Map />
-      {/* <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}/> */}
+      <Map query={query} placeId={placeId} />
+      <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
+        {restaurantSelected ? (
+          <>
+            <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+            <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
+            <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
+            <ModalContent>
+              {restaurantSelected?.openning_hours?.open_now
+                ? 'Restaurante está ABERTO agora!!'
+                : 'Restaurante está FECHADO no momento'}
+            </ModalContent>
+          </>
+        ) : (
+          <>
+            <Skeleton width="10px" height="10px" />
+            <Skeleton width="10px" height="10px" />
+            <Skeleton width="10px" height="10px" />
+            <Skeleton width="10px" height="10px" />
+          </>
+        )}
+      </Modal>
     </Wrapper>
   );
 };
