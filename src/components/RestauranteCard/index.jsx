@@ -20,10 +20,11 @@ const RestaurantCard = ({ restaurant, onClick }) => {
         imageLoaded={imageLoaded}
         src={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante}
         onLoad={() => setImageLoaded(true)}
-        alt="foto do restaurante"
+        alt="Foto do Restaurante"
       />
-      {imageLoaded && <Skeleton width="6.25rem" height="6.25rem" />}
+      {!imageLoaded && <Skeleton width="100px" height="100px" />}
     </Restaurant>
   );
 };
+
 export default RestaurantCard;

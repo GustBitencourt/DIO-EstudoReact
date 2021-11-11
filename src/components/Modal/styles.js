@@ -23,9 +23,9 @@ export const Dialog = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-height: calc(100% - 9rem);
-  width: 31.25rem;
-  padding: 1.5rem;
+  max-height: calc(100% - 144px);
+  width: 500px;
+  padding: 24px;
   background-color: #ffffff;
 
   box-shadow: 0px 0px 32px rgba(78, 89, 131, 0.2);

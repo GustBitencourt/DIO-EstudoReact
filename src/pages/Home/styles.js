@@ -1,67 +1,66 @@
 import styled from 'styled-components';
+
 import Slider from 'react-slick';
 
-/* Responsável por englobar menu lateral e o mapa */
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-/* Menu lateral */
+
 export const Container = styled.aside`
-  background-color: ${(props) => props.theme.colors.background}
-  width: 22.5rem;
-  heigth: 100vh;
+  background-color: ${(props) => props.theme.colors.background};
+  width: 360px;
+  height: 100vh;
   overflow-y: auto;
 `;
 
-/* input de texto pra search */
 export const Search = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #ffffff;
-  padding: 1rem;
+  padding: 16px;
 `;
 
 export const Logo = styled.img`
-  margin: 1rem;
+  margin-bottom: 15px;
 `;
 
 export const Map = styled.div`
-  background-color: blue;
-  width: 31.25rem;
+  background-color: red;
+  width: 500px;
 `;
 
 export const Carousel = styled(Slider)`
   .slick-slide {
-    margin-right: 1.875rem;
+    margin-right: 30px;
   }
 `;
 
 export const CarouselTitle = styled.h1`
   font-family: ${(props) => props.theme.fonts.regular};
   color: ${(props) => props.theme.colors.text};
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
-  line-height: 1.8125rem;
-  margin: 1rem 0;
+  line-height: 29px;
+  margin: 16px 0;
 `;
 
 export const ModalTitle = styled.p`
-  margin-botton: 0.625rem;
-  letter-spacing: 0.0069rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.11px;
   font-family: ${(props) => props.theme.fonts.regular};
   color: ${(props) => props.theme.colors.text};
+  line-height: 29px;
+  font-size: 24px;
   font-weight: bold;
-  font-size: 1.5rem;
-  text-transform: none;
 `;
 
 export const ModalContent = styled.p`
-  margin-botton: 0.625rem;
+  margin-bottom: 10px;
   font-family: ${(props) => props.theme.fonts.regular};
   color: ${(props) => props.theme.colors.text};
   font-weight: normal;
-  line-height: 1rem.
-  font-size: 1.5rem;
+  line-height: 19px;
+  font-size: 16px;
 `;

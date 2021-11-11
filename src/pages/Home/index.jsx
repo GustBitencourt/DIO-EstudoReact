@@ -26,14 +26,13 @@ const Home = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const { restaurants, restaurantSelected } = useSelector((state) => state.restaurants);
 
-  /* Configuração do carrossel */
   const settings = {
     dots: false,
     infinite: true,
     autoplay: true,
     speed: 300,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     adaptiveHeight: true,
   };
 
@@ -43,7 +42,7 @@ const Home = () => {
     }
   }
 
-  function handleOpenModal() {
+  function handleOpenModal(placeId) {
     setPlaceId(placeId);
     setModalOpened(true);
   }
@@ -58,7 +57,6 @@ const Home = () => {
             outlined
             trailingIcon={<MaterialIcon role="button" icon="search" />}>
             <Input
-              type="text"
               value={inputValue}
               onKeyPress={handleKeyPress}
               onChange={(e) => setInputValue(e.target.value)}
@@ -96,9 +94,9 @@ const Home = () => {
             <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
             <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
             <ModalContent>
-              {restaurantSelected?.openning_hours?.open_now
-                ? 'Restaurante está ABERTO agora!!'
-                : 'Restaurante está FECHADO no momento'}
+              {restaurantSelected?.opening_hours?.open_now
+                ? 'Aberto agora :-)'
+                : 'Fechado neste momento :-('}
             </ModalContent>
           </>
         ) : (
